@@ -7,12 +7,14 @@ for name in glob('data/raw/*.dat'):
     with open(name) as in_file:
         with open("data/csv/"+label+".csv",'w') as out_file:
             writer = csv.writer(out_file)
-            writer.writerow(["id","year","type","jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"])
+            header = ["id","year"]
+            header += [str(month+1)+"_"+label for month in xrange(12)]
+            writer.writerow(header)
 
             for line in in_file:
                 if int(line[11:15]) < 2000:
                     continue
-                components = [line[0:11],line[11:15],line[15:19]]
+                components = [line[0:11],line[11:15]]
                 components += [int(line[19+x*8:24+x*8])/100 for x in range(12)]
                 writer.writerow(components)
 
@@ -29,8 +31,8 @@ for name in glob('data/raw/*.inv'):
             writer = csv.writer(out_file)
             writer.writerow(["id","lat","long","name","country"])
             for line in in_file:
-                if not line[74:79].strip().isdigit() or int(line[74:79]) < 100:
-                    continue
+                # if not line[74:79].strip().isdigit() or int(line[74:79]) < 100:
+                #     continue
                 name = title(line[38:68])
                 name = name[:name.find("  ")].strip()
                 components = [line[0:11],line[12:20],line[21:30],name,ccodes[line[:3]]]
