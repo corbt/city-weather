@@ -32,7 +32,7 @@ data = pd.read_csv("data/csv/categories.csv")
 cat_colors=['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a']
 
 for category,color in zip(data['category'].unique(),cat_colors):
-    for _,station in data[data.category == category].iterrows():
+    for _,station in data[data.category == category].dropna().iterrows():
         f_map.polygon_marker([station['lat'],station['long']], 
             radius=5, 
             popup=(popup_chart(station),"data_{0}.json".format(station['id'])),
