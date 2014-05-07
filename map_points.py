@@ -40,4 +40,4 @@ for category,color in zip(data['category'].unique(),cat_colors):
             fill_color=color, 
             fill_opacity=1)
 
-f_map.create_map(path='viz/map.html')
+f_map.create_map(path='viz/current_map/map.html')
