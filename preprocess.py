@@ -12,8 +12,8 @@ for name in glob('data/raw/*.dat'):
             writer.writerow(header)
 
             for line in in_file:
-                if int(line[11:15]) < 2000:
-                    continue
+                # if int(line[11:15]) < 2000:
+                #     continue
                 components = [line[0:11],line[11:15]]
                 components += [int(line[19+x*8:24+x*8])/100 for x in range(12)]
                 writer.writerow(components)

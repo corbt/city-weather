@@ -6,6 +6,7 @@ data = None
 
 for typ in ["tavg","tmin","tmax"]:
     typ_data = pd.read_csv("data/csv/"+typ+".csv")
+    typ_data = typ_data[typ_data.year >= 2000]
     if data is None:
         data = typ_data
     else:
