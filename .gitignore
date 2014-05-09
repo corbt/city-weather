@@ -61,3 +61,4 @@ viz/
 
 # Compiled
 *.js
+.ipynb_checkpoints
